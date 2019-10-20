@@ -1,6 +1,6 @@
 # What is DevDesk Queue?
 
-DevDesk Queue is an application built by Lambda School students that simplifies the process of receiving and supplying help.
+DevDesk Queue is an application built by Lambda School students for Lambda School students that simplifies the process of receiving and supplying help.
 
 # Features of the Application
 
@@ -10,20 +10,22 @@ DevDesk Queue is an application built by Lambda School students that simplifies 
 
 - Helpers can create accounts and login
 - Helpers can view all open tickets
-- Helpers can asssign ticket to self and also reassign ticket back to the queue
-- Helperscan change status of ticket
+- Helpers can assign ticket to self and also reassign ticket back to the queue
+- Helpers can change status of ticket
 
-# Frontend Developers
+# Team
+
+## Frontend Developers
 
 - Evans Ibok
 - Justin Irabor
 - Victor Arowo
 
-# Web UI Developer
+## Web UI Developer
 
 - Ken Munene
 
-# Project Lead
+## Project Lead
 
 - Martin Twum Mensah
 
