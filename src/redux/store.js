@@ -2,14 +2,12 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 
 import thunk from 'redux-thunk';
 
-import userReducer from './reducers/userReducer';
-import studentTicketReducer from './reducers/studentTicketReducer';
-import helperTicketReducer from './reducers/helperTicketReducer';
+import { userReducer } from './reducers/userReducer';
+import { ticketReducer } from './reducers/ticketsReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
-  helper: helperTicketReducer,
-  student: studentTicketReducer
+  ticket: ticketReducer
 });
 
 const middleware = [thunk];

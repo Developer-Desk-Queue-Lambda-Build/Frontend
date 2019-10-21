@@ -1,8 +1,9 @@
-import { LOGIN, LOADING, SET_ERRORS } from '../types';
+import { LOGIN, LOADING, SET_ERRORS, GET_USER_DETAILS, LOGOUT } from '../types';
 
 const initialState = {
   loading: false,
   authenticated: false,
+  credentials: {},
   errors: {}
 };
 
@@ -15,6 +16,12 @@ export const userReducer = (state = initialState, action) => {
         authenticated: true
       };
 
+    case GET_USER_DETAILS:
+      return {
+        ...state,
+        credentials: action.payload
+      };
+
     case LOADING:
       return {
         loading: true
@@ -24,6 +31,9 @@ export const userReducer = (state = initialState, action) => {
       return {
         errors: action.payload
       };
+
+    case LOGOUT:
+      return initialState;
 
     default:
       return state;
