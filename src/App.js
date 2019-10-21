@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'antd';
+import Login from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      <Button type="primary">Button</Button>
+      <div className="header">
+      <h1>DevDesk Queue</h1>
+      <h2>Log in</h2>
+      </div>
+      <Login />
     </div>
   );
 }
