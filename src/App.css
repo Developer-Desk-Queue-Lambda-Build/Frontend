@@ -1,4 +1,8 @@
+@import '../node_modules/antd/dist/antd.css';
 
+body {
+  background: rgb(233,233,233);
+}
 .App {
   width: 80%;
   margin: 0 auto;
@@ -10,9 +14,23 @@
   height: 40vmin;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-form {
+  background:rgb(233, 233, 233);
+  margin: 0 auto;
+  width: 60%;
+  text-align: left;
+  }
+  
+  
+
+.App-form {
+  background-color: rgb(233,233,233);
+  min-height: 70vh;
+  width: 60vw;
+  margin: 0 auto;
+  margin-top:1em;
+  border-radius: 5px;
+  box-shadow: 2px 1px 8px 2px rgb(180, 180, 180);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +45,7 @@
 
 .divBorder {
   background-color: #E8E8E8;
-  width: 40%;
+  width: 60%;
   height: 30em;
   padding: 50px;
   color: red;
@@ -42,10 +60,17 @@
 }
 
 input, button {
-  width: 70%;
+  width: 90%;
+  -webkit-appearance: none;
   text-align: center;
-  background: yellow;
-  margin-top: 100px;
+  background: white;
+  margin: 2em;
+}
+
+button {
+  margin: 0 auto;
+
+  width: 40%;
 }
 
 

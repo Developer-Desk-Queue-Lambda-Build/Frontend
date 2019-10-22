@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Login from './components/Login';
+import {WrappedNormalLoginForm} from './components/Login';
 
 function App() {
   return (
@@ -9,7 +9,9 @@ function App() {
       <h1>DevDesk Queue</h1>
       <h2>Log in</h2>
       </div>
-      <Login />
+      <div className="App-form">
+      <WrappedNormalLoginForm />
+      </div>
     </div>
   );
 }
