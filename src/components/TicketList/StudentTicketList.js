@@ -16,6 +16,8 @@ const Div = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding-top: 2.5em;
+  margin-left: 20vw;
 `;
 
 const StudentTicketList = ({ getAllTickets, user, tickets: { allTickets } }) => {

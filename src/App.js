@@ -10,21 +10,11 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
-      {/* <div className="App">
-        <div className="header">
-          <h1>DevDesk Queue</h1>
-          <h2>Log in</h2>
-        </div>
-        <div className="App-form">
-          <WrappedNormalLoginForm />
-        </div>
-      </div> */}
-
       <Route
         path="/dashboard"
         component={Dashboard}
       />
-      <Route path="/" component={StudentTicketList} />
+      {/* <Route path="/" component={StudentTicketList} /> */}
     </Router>
   );
 }
