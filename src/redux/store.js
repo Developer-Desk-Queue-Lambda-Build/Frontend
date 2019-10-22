@@ -3,7 +3,7 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import { userReducer } from './reducers/userReducer';
-import { ticketReducer } from './reducers/ticketsReducer';
+import { ticketReducer } from './reducers/ticketReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,

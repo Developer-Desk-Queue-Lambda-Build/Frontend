@@ -3,7 +3,8 @@ import {
   SET_ERRORS,
   GET_ALL_TICKETS,
   CREATE_TICKET,
-  EDIT_TICKET
+  EDIT_TICKET,
+  DELETE_TICKET
 } from '../types';
 
 const initialState = {
@@ -34,6 +35,15 @@ export const ticketReducer = (state = initialState, action) => {
         loading: false,
         ownedTickets: state.ownedTickets.map(ticket =>
           ticket.id === action.payload.id ? action.payload : ticket
+        )
+      };
+
+    case DELETE_TICKET:
+      return {
+        ...initialState,
+        loading: false,
+        ownedTickets: state.ownedTickets.filter(
+          ticket => ticket.id !== action.payload.id
         )
       };
 
