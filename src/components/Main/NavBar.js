@@ -38,6 +38,7 @@ const NavCon = styled.div`
 `;
 
 const Navbar = ({ logoutUser }) => {
+
   return (
     <NavCon>
       <Input
@@ -47,7 +48,10 @@ const Navbar = ({ logoutUser }) => {
       />
 
       <Button 
-      style={{ width: 100, height: 40 }}>Logout</Button>
+      style={{ width: 100, height: 40 }} 
+      onClick={() => logoutUser}>
+        Logout
+      </Button>
     </NavCon>
   );
 };

@@ -11,7 +11,6 @@ function App() {
       <div className="App">
         <div className="header">
           <h1>DevDesk Queue</h1>
-        <NavLink to="/dashboard">Dashboard</NavLink>
           <h2>Log in</h2>
         </div>
         <div className="App-form">
