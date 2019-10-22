@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Input, Button } from "antd";
 import styled from "styled-components";
 
-import { logoutUser } from "../../redux/actions/userActionCreators";
+import { logoutUser } from "../redux/actions/userActionCreators";
 
 const NavCon = styled.div`
   padding: 3em;
