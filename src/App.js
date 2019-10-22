@@ -3,19 +3,16 @@ import {BrowserRouter as Router, NavLink, Route} from 'react-router-dom';
 import './App.css';
 import { WrappedNormalLoginForm } from './pages/Login';
 import { SignUpForm } from './pages/SignUp';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   return (
-    <div className="App">
+    <div>
     <Router>
-      <div className="header">
-      <h1>DevDesk Queue</h1>
-      <h2><NavLink to="/login">Log in</NavLink></h2>
-      </div>
-        <div className="App-form">
-      <Route path="/login" component={WrappedNormalLoginForm} />
+      <Route exact path="/login" component={WrappedNormalLoginForm} />
+      <Route exact path="/" component={WrappedNormalLoginForm} />
       <Route path="/register" component={SignUpForm} />
-      </div>
+      <Route path="/sidebar" component={Sidebar}/>
       </Router>
     </div>
   );
