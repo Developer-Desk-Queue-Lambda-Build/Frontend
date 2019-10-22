@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      {//TODO: Render one of these based on the role of the currently logged in  user}
+      {/* {TODO: Render one of these based on the role of the currently logged in  user} */}
       <StudentTicketList />
       <HelperTicketList/>
     </>
