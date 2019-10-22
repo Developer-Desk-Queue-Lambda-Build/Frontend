@@ -18,19 +18,8 @@ class SignUp extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please, tell us your name :)' }],
-          })(<>
-            <h3>Full name</h3>
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Full name"
-            />
-            </>,
-          )}
-        </Form.Item>
+      <div className="App-form">
+      <Form onSubmit={this.handleSubmit} className="login-form">          
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -93,6 +82,7 @@ class SignUp extends React.Component {
           Or <NavLink to="/login">log in instead</NavLink>
         </Form.Item>
       </Form>
+      </div>
     );
   }
 }

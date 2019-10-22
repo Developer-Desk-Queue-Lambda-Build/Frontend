@@ -17,10 +17,6 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="App-form">
-      <div className="header">
-      <h1>DevDesk Queue</h1>
-      <h2><NavLink to="/login">Log in</NavLink></h2>
-      </div>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {

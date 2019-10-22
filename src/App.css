@@ -1,8 +1,5 @@
 @import '../node_modules/antd/dist/antd.css';
 
-body {
-  background: rgb(233,233,233);
-}
 
 
 
@@ -81,7 +78,10 @@ button {
 
 .header {
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 1.5em;
 } 
 
 .formdata {

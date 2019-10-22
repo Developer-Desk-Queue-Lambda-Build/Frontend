@@ -4,6 +4,7 @@ import './App.css';
 import { WrappedNormalLoginForm } from './pages/Login';
 import { SignUpForm } from './pages/SignUp';
 import StudentTicketList from './components/TicketList/StudentTicketList';
+import Access from './pages/Access';
 
 import Dashboard from './pages/Dashboard';
 
@@ -14,6 +15,7 @@ function App() {
         path="/dashboard"
         component={Dashboard}
       />
+      <Access />
       {/* <Route path="/" component={StudentTicketList} /> */}
     </Router>
   );
