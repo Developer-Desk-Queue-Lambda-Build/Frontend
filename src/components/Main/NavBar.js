@@ -8,40 +8,34 @@ import { logoutUser } from "../../redux/actions/userActionCreators";
 
 const NavCon = styled.div`
   margin: 2em;
+  padding: 3em;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(233, 233, 233);
+  width: 100vw;
+  height: 70px;
 
-  .topCon {
-    display: flex;
-    flex-direction: space-between;
+  button {
+    width: 5rem;
+    border: 1px solid rgb(218, 48, 48);
+    color: rgb(218, 48, 48);
+    background: transparent;
 
-    button {
-      width: 5rem;
+    &:hover {
       border: 1px solid rgb(218, 48, 48);
-      color: rgb(218, 48, 48);
-      background: transparent;
+      color: white;
+      background: rgb(218, 48, 48);
     }
-  }
-
-  .bottomCon {
-    display: flex;
-    flex-direction: space-between;
   }
 `;
 
 const Navbar = ({ logoutUser }) => {
   return (
     <NavCon>
-      <div className="topCon">
-        <Input icon="search" placeholder="Search..." style={{ width: 200 }} />
+      <Input icon="search" placeholder="Search..." style={{ width: 200 }} />
 
-        <Button>Logout</Button>
-      </div>
-
-      <div className="bottomCon">
-        <NavLink to="/open-ticket">Open Tickets</NavLink>
-        <NavLink to="/resolved-ticket">Resolved Tickets</NavLink>
-      </div>
+      <Button>Logout</Button>
     </NavCon>
   );
 };
