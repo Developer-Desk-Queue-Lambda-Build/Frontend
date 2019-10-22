@@ -42,14 +42,13 @@ const Navbar = ({ logoutUser }) => {
   return (
     <NavCon>
       <Input
+        allowClear
         icon="search"
         placeholder="Search..."
         style={{ width: 200, height: 40 }}
       />
 
-      <Button 
-      style={{ width: 100, height: 40 }} 
-      onClick={() => logoutUser}>
+      <Button style={{ width: 100, height: 40 }} onClick={() => logoutUser}>
         Logout
       </Button>
     </NavCon>
