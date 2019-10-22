@@ -1,6 +1,8 @@
 import React from 'react';
+import {} from 'react-router-dom';
 import './App.css';
 import {WrappedNormalLoginForm} from './components/Login';
+import {SignUpForm} from './components/SignUp';
 
 function App() {
   return (

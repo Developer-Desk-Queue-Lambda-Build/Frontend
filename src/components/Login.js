@@ -42,7 +42,7 @@ class NormalLoginForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" size="large" htmlType="submit" className="login-form-button">
             Log in
           </Button>
         </Form.Item>
