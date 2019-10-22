@@ -4,45 +4,63 @@ import {
   GET_ALL_TICKETS,
   CREATE_TICKET,
   EDIT_TICKET,
-  DELETE_TICKET
+  DELETE_TICKET,
+  VIEW_TICKET,
+  CLOSE_TICKET
 } from '../types';
 
 const initialState = {
   allTickets: [],
-  selectedTicket: {},
-  ownedTickets: []
+  showModal: false,
+  selectedTicket: {}
 };
 
 export const ticketReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_TICKETS:
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        openTickets: action.payload
+        allTickets: action.payload
       };
 
     case CREATE_TICKET:
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        allTickets: [...state.openTickets, action.payload]
+        allTickets: [...state.allTickets, action.payload]
       };
 
     case EDIT_TICKET:
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        ownedTickets: state.ownedTickets.map(ticket =>
+        allTickets: state.allTickets.map(ticket =>
           ticket.id === action.payload.id ? action.payload : ticket
         )
       };
 
+    case VIEW_TICKET:
+      return {
+        ...state,
+        showModal: true,
+        selectedTicket: state.allTickets.find(
+          ticket => ticket.id === action.payload
+        )
+      };
+
+    case CLOSE_TICKET:
+      return {
+        ...state,
+        showModal: false,
+        selectedTicket: {}
+      };
+
     case DELETE_TICKET:
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        ownedTickets: state.ownedTickets.filter(
+        allTickets: state.allTickets.filter(
           ticket => ticket.id !== action.payload.id
         )
       };

@@ -11,7 +11,7 @@ export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         authenticated: true
       };
