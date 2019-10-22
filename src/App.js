@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, NavLink, Route} from 'react-router-dom';
 import './App.css';
-import {WrappedNormalLoginForm} from './components/Login';
-import {SignUpForm} from './components/SignUp';
+import { WrappedNormalLoginForm } from './pages/Login';
+import { SignUpForm } from './pages/SignUp';
 
 function App() {
   return (

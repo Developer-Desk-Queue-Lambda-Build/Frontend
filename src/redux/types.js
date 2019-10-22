@@ -7,11 +7,11 @@ export const SET_ERRORS = 'SET_ERRORS';
 export const LOGIN = 'LOGIN';
 export const SIGNUP = 'SIGNUP';
 export const LOGOUT = 'LOGOUT';
+
 export const GET_USER_DETAILS = 'GET_USER_DETAILS';
 export const LOADING = 'LOADING';
 
 export const CREATE_TICKET = 'CREATE_TICKET';
-export const GET_OPEN_TICKETS = 'GET_OPEN_TICKETS';
 export const VIEW_TICKET = 'VIEW_TICKET';
 export const DELETE_TICKET = 'VIEW_TICKET';
 
