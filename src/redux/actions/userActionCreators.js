@@ -52,11 +52,11 @@ export const userSignUp = (userData, history) => dispatch => {
     });
 };
 
-export const logoutUser = history => dispatch => {
+export const logoutUser = props => dispatch => {
   localStorage.removeItem('Token');
   delete axiosHelperAuth.defaults.headers.common['Authorization'];
   delete axiosStudentAuth.defaults.headers.common['Authorization'];
   dispatch({ type: LOGOUT });
-  history.push('/login');
+  props.history.push('/login');
   window.location.reload(true);
 };
