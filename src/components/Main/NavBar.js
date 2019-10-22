@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { logoutUser } from "../../redux/actions/userActionCreators";
 
 const NavCon = styled.div`
-  margin: 2em;
   padding: 3em;
   display: flex;
   justify-content: space-between;
@@ -16,11 +15,19 @@ const NavCon = styled.div`
   width: 100vw;
   height: 70px;
 
+  input {
+    font-size: 1rem;
+
+    &:hover {
+      border: 1px solid rgb(218, 48, 48);
+    }
+  }
+
   button {
-    width: 5rem;
     border: 1px solid rgb(218, 48, 48);
     color: rgb(218, 48, 48);
     background: transparent;
+    font-size: 1.2rem;
 
     &:hover {
       border: 1px solid rgb(218, 48, 48);
@@ -33,9 +40,14 @@ const NavCon = styled.div`
 const Navbar = ({ logoutUser }) => {
   return (
     <NavCon>
-      <Input icon="search" placeholder="Search..." style={{ width: 200 }} />
+      <Input
+        icon="search"
+        placeholder="Search..."
+        style={{ width: 200, height: 40 }}
+      />
 
-      <Button>Logout</Button>
+      <Button 
+      style={{ width: 100, height: 40 }}>Logout</Button>
     </NavCon>
   );
 };
