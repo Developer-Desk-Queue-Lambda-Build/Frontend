@@ -1,20 +1,21 @@
 import React from 'react';
-import {} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import {WrappedNormalLoginForm} from './components/Login';
-import {SignUpForm} from './components/SignUp';
+import PrivateRoute from './components/PrivateRoute';
+
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/SignUp';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <div className="header">
-      <h1>DevDesk Queue</h1>
-      <h2>Log in</h2>
-      </div>
-      <div className="App-form">
-      <WrappedNormalLoginForm />
-      </div>
-    </div>
+    <Switch>
+      <PrivateRoute path="/dashboard" component={Dashboard} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="*" component={NotFound} />
+    </Switch>
   );
 }
 

@@ -3,7 +3,10 @@ import {
   LOADING_UI,
   GET_ALL_TICKETS,
   CREATE_TICKET,
-  DELETE_TICKET
+  DELETE_TICKET,
+  VIEW_TICKET,
+  CLOSE_TICKET,
+  SEARCH_QUERY_CHANGE
 } from '../types';
 
 export const getAllTickets = () => dispatch => {
@@ -28,6 +31,26 @@ export const createTicket = ticketDetails => dispatch => {
         payload: data
       });
     });
+};
+
+export const viewTicket = id => {
+  return {
+    type: VIEW_TICKET,
+    payload: id
+  };
+};
+
+export const closeTicket = () => {
+  return {
+    type: CLOSE_TICKET
+  };
+};
+
+export const searchQueryChange = value => {
+  return {
+    type: SEARCH_QUERY_CHANGE,
+    payload: value
+  };
 };
 
 export const deleteTicket = id => dispatch => {
