@@ -6,13 +6,16 @@ import HelperTicketList from '../components/TicketList/HelperTicketList';
 
 const Dashboard = () => {
   return (
-    <>
+    <div>
+      
       <Sidebar />
       <NavBar />
-      {/* {TODO: Render one of these based on the role of the currently logged in  user} */}
       <StudentTicketList />
-      <HelperTicketList/>
-    </>
+      
+      {/* {TODO: Render one of these based on the role of the currently logged in  user} */}
+      
+      {/* <HelperTicketList/> */}
+    </div>
   );
 };
 

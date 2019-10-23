@@ -2,17 +2,24 @@ import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { createTicket } from '../../redux/actions/studentActionCreators';
-import { Button } from 'antd';
 import Header from './Header';
 import Footer from './Footer';
+import { Layout, Menu } from 'antd';
 
-const Sidebar = ({ createTicket }) => {
+const { Sider } = Layout;
+
+
+export const Sidebar = ({ createTicket }) => {
   return (
     <>
-      <Header />
-      <Profile />
-      <Button>Create Ticket</Button>
-      <Footer />
+      <Sider >
+          <div className="logo"/>
+          <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100vh', width: '20vw', background: '#26213A', position:'fixed', boxShadow: '1px 1px 1px 1px #26213A', border:'none'}}>
+          <Header />
+          <Profile />
+          <Footer />
+          </Menu>
+        </Sider>
     </>
   );
 };
