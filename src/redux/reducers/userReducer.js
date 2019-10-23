@@ -19,16 +19,19 @@ export const userReducer = (state = initialState, action) => {
     case GET_USER_DETAILS:
       return {
         ...state,
-        credentials: action.payload
+        credentials: action.payload,
+        loading: false
       };
 
     case LOADING:
       return {
+        ...state,
         loading: true
       };
 
     case SET_ERRORS:
       return {
+        ...state,
         errors: action.payload
       };
 

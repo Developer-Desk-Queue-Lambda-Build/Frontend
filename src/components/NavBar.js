@@ -1,8 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Input, Button } from "antd";
-import styled from "styled-components";
-import { logoutUser } from "../redux/actions/userActionCreators";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Input, Button } from 'antd';
+import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+
+import { logoutUser } from '../redux/actions/userActionCreators';
+import { searchQueryChange } from '../redux/actions/studentActionCreators';
 
 const NavCon = styled.div`
   padding: 3em;
@@ -11,18 +14,13 @@ const NavCon = styled.div`
   float: right;
   position: fixed;
   align-items: center;
-  background: rgb(233, 233, 233);
+  background: rgba(233, 233, 233, 0.1);
   width: 80vw;
   height: 70px;
   margin-left: 20vw;
-
-  input {
-    font-size: 1rem;
-
-    &:hover {
-      border: 1px solid rgb(218, 48, 48);
-    }
-  }
+  z-index: 1;
+  font-size: 1rem;
+  background: #26213a;
 
   button {
     border: 1px solid rgb(218, 48, 48);
@@ -38,8 +36,7 @@ const NavCon = styled.div`
   }
 `;
 
-const Navbar = ({ logoutUser }) => {
-
+const Navbar = ({ logoutUser, history, searchQueryChange }) => {
   return (
     <NavCon>
       <Input
@@ -47,9 +44,13 @@ const Navbar = ({ logoutUser }) => {
         icon="search"
         placeholder="Search..."
         style={{ width: 200, height: 40 }}
+        onChange={e => searchQueryChange(e.target.value)}
       />
 
-      <Button style={{ width: 100, height: 40 }} onClick={() => logoutUser}>
+      <Button
+        style={{ width: 100, height: 40 }}
+        onClick={() => logoutUser(history)}
+      >
         Logout
       </Button>
     </NavCon>
@@ -58,10 +59,13 @@ const Navbar = ({ logoutUser }) => {
 
 const mapStateToProps = state => state.user;
 const mapActionToProps = {
-  logoutUser
+  logoutUser,
+  searchQueryChange
 };
 
-export default connect(
-  mapStateToProps,
-  mapActionToProps
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapActionToProps
+  )(Navbar)
+);
