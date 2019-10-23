@@ -1,61 +1,111 @@
 import React from 'react';
 import '../App.css';
-import { Form, Icon, Input, Button } from 'antd';
-import {NavLink} from 'react-router-dom';
+import { Form, Icon, Input, Button, Spin } from 'antd';
+import { NavLink, Redirect } from 'react-router-dom';
 
-class NormalLoginForm extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  };
+import { withFormik } from 'formik';
+import * as yup from 'yup';
+import { connect } from 'react-redux';
+import { userLogin } from '../redux/actions/userActionCreators';
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    return (
-      <div className="App-form">
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(<>
-            <h3>Username</h3>
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />
-            </>,
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-              <><h3>Password</h3>
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              placeholder="Password"
-            />
-            </>,
-          )}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" size="large" htmlType="submit" className="login-form-button">
-            Log in
-          </Button>
-          <br />
-          No account yet? <NavLink to="/register">Register by clicking here</NavLink>
-        </Form.Item>
-      </Form>
+const C = props => {
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    touched,
+    errors
+  } = props;
+
+  return (
+    <>
+      {localStorage.getItem('token') && <Redirect to="/dashboard" />}
+      <div className="header">
+        <h1>DevDesk Queue</h1>
+        <h2>
+          <NavLink to="/login">Log in</NavLink>
+        </h2>
       </div>
-    );
-  }
-}
+      <div className="App-form">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <Form.Item
+            help={touched.username && errors.username ? errors.username : ''}
+            validateStatus={
+              touched.username && errors.username ? 'error' : undefined
+            }
+          >
+            <Input
+              size="large"
+              name="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Username"
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
+          <Form.Item
+            help={touched.password && errors.password ? errors.password : ''}
+            validateStatus={
+              touched.password && errors.password ? 'error' : undefined
+            }
+          >
+            <Input.Password
+              size="large"
+              name="password"
+              placeholder="Password"
+              value={values.password}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Login
+            </Button>
+            <br />
+            No account yet?{' '}
+            <NavLink to="/signup">Register by clicking here</NavLink>
+          </Form.Item>
+        </form>
 
-export const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(
-  NormalLoginForm
-);
+        {props.user.loading && <Spin />}
+      </div>
+    </>
+  );
+};
+
+const validationSchema = yup.object().shape({
+  username: yup.string().required('Please provide a name'),
+  password: yup
+    .string()
+    .required('Please provide a password')
+    .min(4, 'Password too short')
+});
+
+const Login = withFormik({
+  mapPropsToValues: () => ({ username: '', password: '' }),
+  handleSubmit: (values, { props, setSubmitting }) => {
+    props.userLogin(values.username, values.password, props.history);
+    setSubmitting(false);
+  },
+
+  validationSchema: validationSchema
+})(C);
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { userLogin }
+)(Login);

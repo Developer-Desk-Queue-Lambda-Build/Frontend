@@ -9,7 +9,7 @@ import TicketDetails from '../Modal';
 
 import styled from 'styled-components';
 
-import { Tabs } from 'antd';
+import { Tabs, Result, Icon } from 'antd';
 import Ticket from './Ticket';
 const { TabPane } = Tabs;
 
@@ -25,7 +25,7 @@ const renderTabBar = (props, DefaultTabBar) => (
     {({ style }) => (
       <DefaultTabBar
         {...props}
-        style={{ ...style, zIndex: 1, background: '#fff' }}
+        style={{ ...style, zIndex: 1, background: '#fff', top: '90px' }}
       />
     )}
   </Sticky>
@@ -40,46 +40,71 @@ const HelperTicketList = ({
     getAllTickets();
   }, []);
 
+  const open =
+    allTickets.length === 0 ? (
+      <Result
+        icon={<Icon type="smile" theme="twoTone" />}
+        title="You have no Tickets yet"
+      />
+    ) : (
+      <Div>
+        {allTickets
+          .filter(ticket => ticket.status === "pending")
+          .filter(ticket => ticket.title.toLowerCase().includes(searchQuery))
+          .map(ticket => (
+            <Ticket data={ticket} key={ticket.id} />
+          ))}
+      </Div>
+    );
+
+  const owned =
+    allTickets.length === 0 ? (
+      <Result
+        icon={<Icon type="smile" theme="twoTone" />}
+        title="You have no Tickets yet"
+      />
+    ) : (
+      <Div>
+        {allTickets
+          .filter(ticket => ticket.helper_id === user.credentials.id)
+          .filter(ticket => ticket.title.toLowerCase().includes(searchQuery))
+          .map(ticket => (
+            <Ticket data={ticket} key={ticket.id} />
+          ))}
+      </Div>
+    );
+
+  const resolved =
+    allTickets.length === 0 ? (
+      <Result
+        icon={<Icon type="smile" theme="twoTone" />}
+        title="You have no Tickets yet"
+      />
+    ) : (
+      <Div>
+        {allTickets
+          .filter(ticket => ticket.status === 'complete')
+          .filter(ticket => ticket.title.toLowerCase().includes(searchQuery))
+          .map(ticket => (
+            <Ticket data={ticket} key={ticket.id} />
+          ))}
+      </Div>
+    );
+
   return (
-    <div style={{ marginLeft: '20vw', marginTop: '70px' }}>
+    <div style={{ marginLeft: '20vw', marginTop: '90px' }}>
       <StickyContainer>
         <Tabs defaultActiveKey="1" size="large" renderTabBar={renderTabBar}>
           <TabPane tab="Opened Tickets" key="1">
-            <Div>
-              {allTickets
-                .filter(ticket =>
-                  ticket.title.toLowerCase().includes(searchQuery)
-                )
-                .map(ticket => (
-                  <Ticket data={ticket} key={ticket.id} />
-                ))}
-            </Div>
+            {open}
           </TabPane>
 
           <TabPane tab="Owned Tickets" key="2">
-            <Div>
-              {allTickets
-                // .filter(ticket => ticket.helper.id === user.credentials.id)
-                .filter(ticket =>
-                  ticket.title.toLowerCase().includes(searchQuery)
-                )
-                .map(ticket => (
-                  <Ticket data={ticket} key={ticket.id} />
-                ))}
-            </Div>
+            {owned}
           </TabPane>
 
           <TabPane tab="Resolved Tickets" key="3">
-            <Div>
-              {allTickets
-                .filter(ticket => ticket.status === 'complete')
-                .filter(ticket =>
-                  ticket.title.toLowerCase().includes(searchQuery)
-                )
-                .map(ticket => (
-                  <Ticket data={ticket} key={ticket.id} />
-                ))}
-            </Div>
+            {resolved}
           </TabPane>
         </Tabs>
       </StickyContainer>

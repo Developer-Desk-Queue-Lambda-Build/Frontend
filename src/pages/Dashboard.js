@@ -3,19 +3,24 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import StudentTicketList from '../components/TicketList/StudentTicketList';
 import NavBar from '../components/NavBar';
 import HelperTicketList from '../components/TicketList/HelperTicketList';
+import { connect } from 'react-redux';
 
-const Dashboard = () => {
+const Dashboard = ({
+  user: {
+    credentials: { role }
+  },
+  ticket: { loading }
+}) => {
   return (
     <div>
       <Sidebar />
       <NavBar />
-      <StudentTicketList />
-
-      {/* {TODO: Render one of these based on the role of the currently logged in  user} */}
-
-      {/* <HelperTicketList /> */}
+      {role === 'student' ? <StudentTicketList /> : <HelperTicketList />}
     </div>
   );
 };
 
-export default Dashboard;
+export default connect(state => ({
+  user: state.user,
+  ticket: state.ticket
+}))(Dashboard);

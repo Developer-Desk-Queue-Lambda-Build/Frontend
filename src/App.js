@@ -1,17 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './components/PrivateRoute';
-import Access from './pages/Access';
 
 import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/SignUp';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Router>
+    <Switch>
       <PrivateRoute path="/dashboard" component={Dashboard} />
-      <Route path="/login" component={Access} />
-    </Router>
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="*" component={NotFound} />
+    </Switch>
   );
 }
 

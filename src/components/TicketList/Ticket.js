@@ -8,8 +8,8 @@ import styled from 'styled-components';
 import { Tag } from 'antd';
 
 const Div = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 250px;
   background: white;
   border: 1px solid grey;
   border-radius: 5px;
@@ -23,7 +23,13 @@ const Div = styled.div`
   }
 `;
 
-const Ticket = ({ data, viewTicket }) => {
+const Ticket = ({
+  data,
+  viewTicket,
+  user: {
+    credentials: { id, role }
+  }
+}) => {
   const handleClick = () => {
     viewTicket(data.id);
   };
@@ -34,6 +40,9 @@ const Ticket = ({ data, viewTicket }) => {
       <p>{data.description}</p>
       <p>Created: {moment(data.created_at, 'YYYYMMDD').fromNow()}</p>
       <Tag color="red">{data.status}</Tag>
+      {role === 'helper' && data.helper_id === id && (
+        <Tag color="black">Owned</Tag>
+      )}
     </Div>
   );
 };

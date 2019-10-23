@@ -14,18 +14,13 @@ const NavCon = styled.div`
   float: right;
   position: fixed;
   align-items: center;
-  background: rgb(233, 233, 233);
+  background: rgba(233, 233, 233, 0.1);
   width: 80vw;
   height: 70px;
   margin-left: 20vw;
-
-  input {
-    font-size: 1rem;
-
-    &:hover {
-      border: 1px solid rgb(218, 48, 48);
-    }
-  }
+  z-index: 1;
+  font-size: 1rem;
+  background: #26213a;
 
   button {
     border: 1px solid rgb(218, 48, 48);
@@ -41,7 +36,7 @@ const NavCon = styled.div`
   }
 `;
 
-const Navbar = ({ logoutUser, history,  searchQueryChange}) => {
+const Navbar = ({ logoutUser, history, searchQueryChange }) => {
   return (
     <NavCon>
       <Input
@@ -62,7 +57,7 @@ const Navbar = ({ logoutUser, history,  searchQueryChange}) => {
   );
 };
 
-const mapStateToProps = state => state.user
+const mapStateToProps = state => state.user;
 const mapActionToProps = {
   logoutUser,
   searchQueryChange
