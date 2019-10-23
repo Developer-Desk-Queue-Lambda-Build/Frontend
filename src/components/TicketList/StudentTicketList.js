@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { StickyContainer, Sticky } from 'react-sticky';
+
 import { connect } from 'react-redux';
 import { getAllTickets } from '../../redux/actions/studentActionCreators';
 
@@ -16,37 +18,53 @@ const Div = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-top: 2.5em;
 `;
 
-const StudentTicketList = ({ getAllTickets, user, tickets: { allTickets } }) => {
+const renderTabBar = (props, DefaultTabBar) => (
+  <Sticky bottomOffset={80}>
+    {({ style }) => (
+      <DefaultTabBar
+        {...props}
+        style={{ ...style, zIndex: 1, background: '#fff' }}
+      />
+    )}
+  </Sticky>
+);
+
+const StudentTicketList = ({
+  getAllTickets,
+  user,
+  tickets: { allTickets }
+}) => {
   useEffect(() => {
     getAllTickets();
   }, []);
 
   return (
-    <div style={{marginLeft:'20vw', marginTop:'70px'}}>
-      <Tabs defaultActiveKey="1" size="large" type="line">
-        <TabPane tab="Opened Tickets" key="1" >
-          <Div>
-            {allTickets
-              // .filter(ticket => ticket.student_id === user.credentials.id)
-              .map(ticket => (
-                <Ticket data={ticket} key={ticket.id} />
-              ))}
-          </Div>
-        </TabPane>
+    <div style={{ marginLeft: '20vw', marginTop: '70px' }}>
+      <StickyContainer>
+        <Tabs defaultActiveKey="1" size="large" renderTabBar={renderTabBar}>
+          <TabPane tab="Opened Tickets" key="1">
+            <Div>
+              {allTickets
+                // .filter(ticket => ticket.student_id === user.credentials.id)
+                .map(ticket => (
+                  <Ticket data={ticket} key={ticket.id} />
+                ))}
+            </Div>
+          </TabPane>
 
-        <TabPane tab="Resolved Tickets" key="2">
-          <Div>
-            {allTickets
-              .filter(ticket => ticket.status === 'complete')
-              .map(ticket => (
-                <Ticket data={ticket} key={ticket.id} />
-              ))}
-          </Div>
-        </TabPane>
-      </Tabs>
+          <TabPane tab="Resolved Tickets" key="2">
+            <Div>
+              {allTickets
+                .filter(ticket => ticket.status === 'complete')
+                .map(ticket => (
+                  <Ticket data={ticket} key={ticket.id} />
+                ))}
+            </Div>
+          </TabPane>
+        </Tabs>
+      </StickyContainer>
 
       <TicketDetails />
     </div>

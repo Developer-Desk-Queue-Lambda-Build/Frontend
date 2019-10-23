@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { StickyContainer, Sticky } from 'react-sticky';
+
 import { connect } from 'react-redux';
 import { getAllTickets } from '../../redux/actions/studentActionCreators';
 
@@ -18,43 +20,69 @@ const Div = styled.div`
   align-items: center;
 `;
 
-const HelperTicketList = ({ getAllTickets, user, tickets: { allTickets } }) => {
+const renderTabBar = (props, DefaultTabBar) => (
+  <Sticky bottomOffset={80}>
+    {({ style }) => (
+      <DefaultTabBar
+        {...props}
+        style={{ ...style, zIndex: 1, background: '#fff' }}
+      />
+    )}
+  </Sticky>
+);
+
+const HelperTicketList = ({
+  getAllTickets,
+  user,
+  tickets: { allTickets, searchQuery }
+}) => {
   useEffect(() => {
     getAllTickets();
   }, []);
 
   return (
-    <div>
-      <Tabs defaultActiveKey="1" size="large" type="line">
-        <TabPane tab="Opened Tickets" key="1">
-          <Div>
-            {allTickets.map(ticket => (
-              <Ticket data={ticket} key={ticket.id} />
-            ))}
-          </Div>
-        </TabPane>
+    <div style={{ marginLeft: '20vw', marginTop: '70px' }}>
+      <StickyContainer>
+        <Tabs defaultActiveKey="1" size="large" renderTabBar={renderTabBar}>
+          <TabPane tab="Opened Tickets" key="1">
+            <Div>
+              {allTickets
+                .filter(ticket =>
+                  ticket.title.toLowerCase().includes(searchQuery)
+                )
+                .map(ticket => (
+                  <Ticket data={ticket} key={ticket.id} />
+                ))}
+            </Div>
+          </TabPane>
 
-        <TabPane tab="Owned Tickets" key="2">
-          <Div>
-            {allTickets
-              // .filter(ticket => ticket.helper.id === user.credentials.id)
-              .map(ticket => (
-                <Ticket data={ticket} key={ticket.id} />
-              ))}
-          </Div>
-        </TabPane>
+          <TabPane tab="Owned Tickets" key="2">
+            <Div>
+              {allTickets
+                // .filter(ticket => ticket.helper.id === user.credentials.id)
+                .filter(ticket =>
+                  ticket.title.toLowerCase().includes(searchQuery)
+                )
+                .map(ticket => (
+                  <Ticket data={ticket} key={ticket.id} />
+                ))}
+            </Div>
+          </TabPane>
 
-        <TabPane tab="Resolved Tickets" key="3">
-          <Div>
-            {allTickets
-              .filter(ticket => ticket.status === 'complete')
-              .map(ticket => (
-                <Ticket data={ticket} key={ticket.id} />
-              ))}
-          </Div>
-        </TabPane>
-      </Tabs>
-
+          <TabPane tab="Resolved Tickets" key="3">
+            <Div>
+              {allTickets
+                .filter(ticket => ticket.status === 'complete')
+                .filter(ticket =>
+                  ticket.title.toLowerCase().includes(searchQuery)
+                )
+                .map(ticket => (
+                  <Ticket data={ticket} key={ticket.id} />
+                ))}
+            </Div>
+          </TabPane>
+        </Tabs>
+      </StickyContainer>
       <TicketDetails />
     </div>
   );

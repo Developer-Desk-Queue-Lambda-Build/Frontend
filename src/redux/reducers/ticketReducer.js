@@ -6,13 +6,15 @@ import {
   EDIT_TICKET,
   DELETE_TICKET,
   VIEW_TICKET,
-  CLOSE_TICKET
+  CLOSE_TICKET,
+  SEARCH_QUERY_CHANGE
 } from '../types';
 
 const initialState = {
   allTickets: [],
   showModal: false,
-  selectedTicket: {}
+  selectedTicket: {},
+  searchQuery: ""
 };
 
 export const ticketReducer = (state = initialState, action) => {
@@ -38,6 +40,12 @@ export const ticketReducer = (state = initialState, action) => {
         allTickets: state.allTickets.map(ticket =>
           ticket.id === action.payload.id ? action.payload : ticket
         )
+      };
+
+    case SEARCH_QUERY_CHANGE:
+      return {
+        ...state,
+        searchQuery: action.payload
       };
 
     case VIEW_TICKET:

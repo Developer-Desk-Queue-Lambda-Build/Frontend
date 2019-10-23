@@ -1,8 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Input, Button } from "antd";
-import styled from "styled-components";
-import { logoutUser } from "../redux/actions/userActionCreators";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Input, Button } from 'antd';
+import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+
+import { logoutUser } from '../redux/actions/userActionCreators';
+import { searchQueryChange } from '../redux/actions/studentActionCreators';
 
 const NavCon = styled.div`
   padding: 3em;
@@ -38,8 +41,7 @@ const NavCon = styled.div`
   }
 `;
 
-const Navbar = ({ logoutUser }) => {
-
+const Navbar = ({ logoutUser, history,  searchQueryChange}) => {
   return (
     <NavCon>
       <Input
@@ -47,21 +49,28 @@ const Navbar = ({ logoutUser }) => {
         icon="search"
         placeholder="Search..."
         style={{ width: 200, height: 40 }}
+        onChange={e => searchQueryChange(e.target.value)}
       />
 
-      <Button style={{ width: 100, height: 40 }} onClick={() => logoutUser}>
+      <Button
+        style={{ width: 100, height: 40 }}
+        onClick={() => logoutUser(history)}
+      >
         Logout
       </Button>
     </NavCon>
   );
 };
 
-const mapStateToProps = state => state.user;
+const mapStateToProps = state => state.user
 const mapActionToProps = {
-  logoutUser
+  logoutUser,
+  searchQueryChange
 };
 
-export default connect(
-  mapStateToProps,
-  mapActionToProps
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapActionToProps
+  )(Navbar)
+);
