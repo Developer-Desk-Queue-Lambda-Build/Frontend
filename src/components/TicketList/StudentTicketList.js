@@ -16,6 +16,7 @@ const Div = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding-top: 2.5em;
 `;
 
 const StudentTicketList = ({ getAllTickets, user, tickets: { allTickets } }) => {
@@ -24,9 +25,9 @@ const StudentTicketList = ({ getAllTickets, user, tickets: { allTickets } }) => 
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft:'20vw', marginTop:'70px'}}>
       <Tabs defaultActiveKey="1" size="large" type="line">
-        <TabPane tab="Opened Tickets" key="1">
+        <TabPane tab="Opened Tickets" key="1" >
           <Div>
             {allTickets
               // .filter(ticket => ticket.student_id === user.credentials.id)
