@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
-import{WrappedNormalLoginForm} from './Login';
+import Login from './Login';
 import {SignUpForm} from './SignUp';
 
 export default function Access(){
@@ -11,8 +11,8 @@ export default function Access(){
       <h2><NavLink to="/login">Log in</NavLink></h2>
       </div>
         <Router>
-            <Route path="/login" component={WrappedNormalLoginForm}/>
-            <Route exact path="/" component={WrappedNormalLoginForm}/>
+            <Route path="/login" component={Login}/>
+            <Route exact path="/" component={Login}/>
             <Route path="/register" component={SignUpForm}/>
         </Router>
         </div>
