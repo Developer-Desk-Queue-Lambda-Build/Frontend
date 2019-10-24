@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import CreateTicket from '../CreateTicket';
+import { toggleCreateTicket } from '../../redux/actions/studentActionCreators';
 
-const Profile = ({ credentials: { username, role } }) => {
+const Profile = ({
+  user: {
+    credentials: { username, role }
+  },
+  toggleCreateTicket
+}) => {
   return (
     <div style={{ textAlign: 'center' }}>
       <img
@@ -26,12 +32,32 @@ const Profile = ({ credentials: { username, role } }) => {
 
       <br />
       {role === 'student' && (
-      <CreateTicket/>
+        <>
+          <Button
+            style={{
+              background: '#22942D',
+              border: 'none',
+              color: 'white',
+              marginTop: '10%'
+            }}
+            onClick={toggleCreateTicket}
+          >
+            Create Ticket +
+          </Button>
+          <CreateTicket />
+        </>
       )}
     </div>
   );
 };
 
-const mapStateToProps = state => state.user;
+const mapStateToProps = state => ({ user: state.user, ticket: state.ticket });
 
-export default connect(mapStateToProps)(Profile);
+const mapActionToProps = {
+  toggleCreateTicket
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(Profile);

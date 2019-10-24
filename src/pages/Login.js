@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
-import { Form, Icon, Input, Button, Spin } from 'antd';
+import { Form, Icon, Input, Button, Spin, Alert } from 'antd';
 import { NavLink, Redirect } from 'react-router-dom';
 
 import { withFormik } from 'formik';
@@ -76,6 +76,15 @@ const C = props => {
         </form>
 
         {props.user.loading && <Spin />}
+        {!props.user.loading && Object.keys(props.user.errors).length !== 0 && (
+          <Alert
+            message="An Error Occured"
+            description="Something went wrong!"
+            type="error"
+            closable
+            style={{ width: '50%' }}
+          />
+        )}
       </div>
     </>
   );

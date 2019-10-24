@@ -6,7 +6,8 @@ import {
   VIEW_TICKET,
   CLOSE_TICKET,
   SEARCH_QUERY_CHANGE,
-  LOADING_UI
+  LOADING_UI,
+  TOGGLE_CREATE_TICKET
 } from '../types';
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   showModal: false,
   selectedTicket: {},
   searchQuery: '',
-  loading: false
+  loading: false,
+  showCreateTicket: false
 };
 
 export const ticketReducer = (state = initialState, action) => {
@@ -79,6 +81,11 @@ export const ticketReducer = (state = initialState, action) => {
         )
       };
 
+    case TOGGLE_CREATE_TICKET:
+      return {
+        ...state,
+        showCreateTicket: !state.showCreateTicket
+      };
     default:
       return state;
   }
