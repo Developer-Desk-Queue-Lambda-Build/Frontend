@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import CreateTicket from '../CreateTicket';
 
 const Profile = ({ credentials: { username, role } }) => {
   return (
@@ -25,16 +26,7 @@ const Profile = ({ credentials: { username, role } }) => {
 
       <br />
       {role === 'student' && (
-        <Button
-          style={{
-            background: '#22942D',
-            border: 'none',
-            color: 'white',
-            marginTop: '10%'
-          }}
-        >
-          Create Ticket +
-        </Button>
+      <CreateTicket/>
       )}
     </div>
   );

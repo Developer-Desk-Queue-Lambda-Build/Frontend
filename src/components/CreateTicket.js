@@ -1,9 +1,8 @@
-import React from 'react';
-import { Modal, Button } from 'antd';
+import React, {Component} from 'react';
+import { Modal, Button, Input, Form } from 'antd';
 
-class App extends React.Component {
+export default class CreateTicket extends Component {
   state = {
-    ModalText: 'Content of the modal',
     visible: false,
     confirmLoading: false,
   };
@@ -24,7 +23,7 @@ class App extends React.Component {
         visible: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 1000);
   };
 
   handleCancel = () => {
@@ -38,21 +37,36 @@ class App extends React.Component {
     const { visible, confirmLoading, ModalText } = this.state;
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal with async logic
+        <Button type="primary" onClick={this.showModal}
+        style={{
+            background: '#22942D',
+            border: 'none',
+            color: 'white',
+            marginTop: '10%',
+            textAlign: 'center'
+          }}
+        >
+          Create Ticket +
         </Button>
         <Modal
+        centered="true"
           title="Title"
           visible={visible}
           onOk={this.handleOk}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
         >
-          <p>{ModalText}</p>
+          <Form>
+            <h3>Title</h3>
+            <Input type="text"/>
+            <h3>Category</h3>
+            <Input type="text"/>
+            <h3>Description of issue</h3>
+            <Input.TextArea autoSize='true'/>
+          </Form>
         </Modal>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, mountNode);
