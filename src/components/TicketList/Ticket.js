@@ -37,8 +37,17 @@ const Ticket = ({
   return (
     <Div onClick={handleClick}>
       <h1>{data.title}</h1>
-      <p>{data.description}</p>
-      <p>Created: {moment(data.created_at, 'YYYYMMDD').fromNow()}</p>
+      <p>
+        {data.description.length > 30
+          ? `${data.description.substring(0, 30)} ...`
+          : data.description}
+      </p>
+      <p>
+        Created:{' '}
+        {moment(moment(data.created_at, 'YYYYMMDD, h:mm:ss a'))
+          .add(1, 'hours')
+          .fromNow()}
+      </p>
       <Tag color="red">{data.status}</Tag>
       {role === 'helper' && data.helper_id === id && (
         <Tag color="black">Owned</Tag>

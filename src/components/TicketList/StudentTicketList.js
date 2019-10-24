@@ -51,6 +51,7 @@ const StudentTicketList = ({
       <Div>
         {allTickets
           .filter(ticket => ticket.student_id === user.credentials.id)
+          .filter(ticket => ticket.status === 'pending')
           .filter(ticket => ticket.title.toLowerCase().includes(searchQuery))
           .map(ticket => (
             <Ticket data={ticket} key={ticket.id} />

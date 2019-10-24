@@ -6,7 +6,9 @@ import {
   DELETE_TICKET,
   VIEW_TICKET,
   CLOSE_TICKET,
-  SEARCH_QUERY_CHANGE
+  SEARCH_QUERY_CHANGE,
+  OPEN_CREATE_TICKET,
+  TOGGLE_CREATE_TICKET
 } from '../types';
 
 export const getAllTickets = () => dispatch => {
@@ -30,6 +32,9 @@ export const createTicket = ticketDetails => dispatch => {
         type: CREATE_TICKET,
         payload: data
       });
+    })
+    .catch(err => {
+      dispatch(getAllTickets());
     });
 };
 
@@ -62,4 +67,10 @@ export const deleteTicket = id => dispatch => {
         type: DELETE_TICKET
       });
     });
+};
+
+export const toggleCreateTicket = () => {
+  return {
+    type: TOGGLE_CREATE_TICKET
+  };
 };

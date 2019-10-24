@@ -12,7 +12,7 @@ function App() {
   return (
     <Switch>
       <PrivateRoute path="/dashboard" component={Dashboard} />
-      <Route path="/login" component={Login} />
+      <Route exact path={['/login', '/']} component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="*" component={NotFound} />
     </Switch>
