@@ -8,18 +8,28 @@ import { Layout, Menu } from 'antd';
 
 const { Sider } = Layout;
 
-
 export const Sidebar = ({ createTicket }) => {
   return (
     <>
-      <Sider >
-          <div className="logo"/>
-          <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100vh', width: '20vw', background: '#26213A', position:'fixed', boxShadow: '1px 1px 1px 1px #26213A', border:'none'}}>
+      <Sider>
+        <div className="logo" />
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          style={{
+            height: '100vh',
+            width: '20vw',
+            background: '#26213A',
+            position: 'fixed',
+            boxShadow: '1px 1px 1px 1px #26213A',
+            border: 'none'
+          }}
+        >
           <Header />
           <Profile />
           <Footer />
-          </Menu>
-        </Sider>
+        </Menu>
+      </Sider>
     </>
   );
 };
