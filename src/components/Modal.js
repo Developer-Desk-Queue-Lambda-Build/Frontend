@@ -65,7 +65,11 @@ const TicketDetails = ({
         )}
         <p>
           Created:
-          {moment(tickets.selectedTicket.created_at, 'YYYYMMDD').fromNow()}
+          {moment(
+            moment(tickets.selectedTicket.created_at, 'YYYYMMDD, h:mm:ss a')
+          )
+            .add(1, 'hours')
+            .fromNow()}
         </p>
         <Tag color="red">{tickets.selectedTicket.status}</Tag>
 
@@ -80,6 +84,7 @@ const TicketDetails = ({
           </Select>
         )}
 
+        <br />
         <br />
         {role === 'helper' && tickets.selectedTicket.helper_id === null && (
           <Button onClick={ownTicket}>Own Ticket</Button>

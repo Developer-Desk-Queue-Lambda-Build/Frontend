@@ -51,6 +51,7 @@ const StudentTicketList = ({
       <Div>
         {allTickets
           .filter(ticket => ticket.student_id === user.credentials.id)
+          .filter(ticket => ticket.status === 'pending')
           .filter(ticket => ticket.title.toLowerCase().includes(searchQuery))
           .map(ticket => (
             <Ticket data={ticket} key={ticket.id} />
@@ -59,8 +60,9 @@ const StudentTicketList = ({
     );
 
   const resolved =
-    allTickets.filter(ticket => ticket.student_id === user.credentials.id)
-      .length === 0 ? (
+    allTickets
+      .filter(ticket => ticket.student_id === user.credentials.id)
+      .filter(ticket => ticket.status === 'complete').length === 0 ? (
       <Result
         icon={<Icon type="smile" theme="twoTone" />}
         title="You have no Tickets yet"

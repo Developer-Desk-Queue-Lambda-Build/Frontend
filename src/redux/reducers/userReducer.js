@@ -26,13 +26,15 @@ export const userReducer = (state = initialState, action) => {
     case LOADING:
       return {
         ...state,
-        loading: true
+        loading: true,
+        errors: {}
       };
 
     case SET_ERRORS:
       return {
         ...state,
-        errors: action.payload
+        errors: action.payload,
+        loading: false
       };
 
     case LOGOUT:
