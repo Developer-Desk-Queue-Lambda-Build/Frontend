@@ -60,8 +60,9 @@ const StudentTicketList = ({
     );
 
   const resolved =
-    allTickets.filter(ticket => ticket.student_id === user.credentials.id)
-      .length === 0 ? (
+    allTickets
+      .filter(ticket => ticket.student_id === user.credentials.id)
+      .filter(ticket => ticket.status === 'complete').length === 0 ? (
       <Result
         icon={<Icon type="smile" theme="twoTone" />}
         title="You have no Tickets yet"
