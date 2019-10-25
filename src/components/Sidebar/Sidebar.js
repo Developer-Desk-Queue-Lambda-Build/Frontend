@@ -10,7 +10,7 @@ const { Sider } = Layout;
 
 export const Sidebar = ({ createTicket }) => {
   return (
-    <>
+    <div>
       <Sider>
         <div className="logo" />
         <Menu
@@ -30,7 +30,7 @@ export const Sidebar = ({ createTicket }) => {
           <Footer />
         </Menu>
       </Sider>
-    </>
+    </div>
   );
 };
 

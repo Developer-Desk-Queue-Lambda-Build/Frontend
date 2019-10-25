@@ -2,11 +2,20 @@ import React from 'react';
 import '../App.css';
 import { Form, Icon, Input, Button, Spin, Alert } from 'antd';
 import { NavLink, Redirect } from 'react-router-dom';
-
+import styled from 'styled-components';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { userLogin } from '../redux/actions/userActionCreators';
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div {
+    width: 100%;
+  }
+`;
 
 const C = props => {
   const {
@@ -28,7 +37,7 @@ const C = props => {
         </h2>
       </div>
       <div className="App-form">
-        <form className="login-form" onSubmit={handleSubmit}>
+        <StyledForm className="login-form" onSubmit={handleSubmit}>
           <Form.Item
             help={touched.username && errors.username ? errors.username : ''}
             validateStatus={
@@ -61,19 +70,17 @@ const C = props => {
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
           </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Login
-            </Button>
-            <br />
-            No account yet?{' '}
-            <NavLink to="/signup">Register by clicking here</NavLink>
-          </Form.Item>
-        </form>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            Login
+          </Button>
+          <br />
+          No account yet?
+          <NavLink to="/signup">Register by clicking here</NavLink>
+        </StyledForm>
 
         {props.user.loading && <Spin />}
         {!props.user.loading && Object.keys(props.user.errors).length !== 0 && (

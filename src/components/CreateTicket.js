@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal, Button, notification, Form, Input } from 'antd';
 import { withFormik } from 'formik';
-import * as yup from 'yup';
 import { connect } from 'react-redux';
 import {
   toggleCreateTicket,
