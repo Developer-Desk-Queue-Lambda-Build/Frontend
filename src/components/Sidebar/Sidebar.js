@@ -35,7 +35,7 @@ export const Sidebar = ({ createTicket }) => {
           </DivMenu>
         </Menu>
       </Sider>
-    </>
+    </div>
   );
 };
 
