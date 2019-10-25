@@ -53,8 +53,7 @@ export const userSignUp = (userData, history) => dispatch => {
 
 export const logoutUser = history => dispatch => {
   localStorage.removeItem('token');
-  // delete axiosHelperAuth.defaults.headers.common['Authorization'];
-  // delete axiosStudentAuth.defaults.headers.common['Authorization'];
+  localStorage.removeItem('reduxState');
   dispatch({ type: LOGOUT });
   history.push('/login');
   window.location.reload(true);

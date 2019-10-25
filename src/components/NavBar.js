@@ -27,6 +27,7 @@ const NavCon = styled.div`
     color: rgb(218, 48, 48);
     background: transparent;
     font-size: 1.2rem;
+    margin-right: 30px;
 
     &:hover {
       border: 1px solid rgb(218, 48, 48);
