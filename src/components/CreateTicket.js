@@ -78,7 +78,7 @@ const C = ({
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Title"
-              maxLength={20}
+              maxLength={30}
             />
           </Form.Item>
 

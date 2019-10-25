@@ -10,6 +10,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
 }
@@ -86,4 +87,11 @@ button {
 
 .formdata {
   text-align: left;
+}
+
+
+@media screen and (max-width: 600px) {
+  .secondary {
+    display: none;
+  }
 }

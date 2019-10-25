@@ -20,8 +20,20 @@ const Div = styled.div`
   align-items: center;
 `;
 
+const TicketDiv = styled.div`
+ margin-left: 20vw;
+ margin-top: 90px;
+ @media (max-width: 600px) {
+  margin-left: 0vw;
+  position: relative;
+  top: -40px;
+  }
+`;
+
+
+
 const renderTabBar = (props, DefaultTabBar) => (
-  <Sticky bottomOffset={80}>
+  <Sticky>
     {({ style }) => (
       <DefaultTabBar
         {...props}
@@ -93,7 +105,7 @@ const HelperTicketList = ({
     );
 
   return (
-    <div style={{ marginLeft: '20vw', marginTop: '90px' }}>
+    <TicketDiv style={{zIndex: -2}}>
       <StickyContainer>
         <Tabs defaultActiveKey="1" size="large" renderTabBar={renderTabBar}>
           <TabPane tab="Opened Tickets" key="1">
@@ -110,7 +122,7 @@ const HelperTicketList = ({
         </Tabs>
       </StickyContainer>
       <TicketDetails />
-    </div>
+    </TicketDiv>
   );
 };
 
